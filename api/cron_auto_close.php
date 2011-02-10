@@ -21,7 +21,7 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 		$sql .= "GROUP BY t.id ";
 		$sql .= "ORDER BY t.id ";
 		
-		$rs = $db->Execute($sql) or $db->ErrorMsg(); 
+		$rs = $db->Execute($sql);
 		while($row = mysql_fetch_assoc($rs)) {
 			// Loop though the records.
 			$id = intval($row['id']);
@@ -62,8 +62,8 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 
 		@$ac_only_unassigned = $this->getParam('only_unassigned', 0);
 		@$ac_close_days = $this->getParam('close_days', 7);
-		$tpl->assign('only_unassigned', $ac_only_unassigned);
-		$tpl->assign('close_days', $ac_close_days);
+		$tpl->assign('ac_only_unassigned', $ac_only_unassigned);
+		$tpl->assign('ac_close_days', $ac_close_days);
  
 		$tpl->display($tpl_path . 'cron.tpl');
 	}
