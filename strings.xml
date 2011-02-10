@@ -12,7 +12,6 @@
       <tuv xml:lang="en_US"><seg>No</seg></tuv>
     </tu>
 
-    <!-- Title Section -->
     <tu tuid='cerb5blog.auto_close.title'>
       <tuv xml:lang="en_US"><seg>Cerb5Blog Auto Close</seg></tuv>
     </tu>
@@ -26,7 +25,13 @@
     <tu tuid='cerb5blog.auto_close.config.tab.only_unassigned'>
       <tuv xml:lang="en_US"><seg>Only close tickets that are unassigned?</seg></tuv>
     </tu>
-
+   <tu tuid='cerb5blog.auto_close.title'>
+      <tuv xml:lang="en_US"><seg>Cerb5Blog Auto Close</seg></tuv>
+    </tu>
+   <tu tuid='cerb5blog.auto_close.auto_closed'>
+      <tuv xml:lang="en_US"><seg>Automaticly Closed</seg></tuv>
+    </tu>
+ 
     <!-- Error -->
 
 </body>
