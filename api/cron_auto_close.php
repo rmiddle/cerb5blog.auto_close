@@ -20,7 +20,6 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 		$sql .= "AND t.is_waiting = 1 ";
 		$sql .= "GROUP BY t.id ";
 		$sql .= "ORDER BY t.id ";
-		$tpl->assign('sql', $sql);
 		
 		$rs = $db->Execute($sql) or $db->ErrorMsg(); 
 		while($row = mysql_fetch_assoc($rs)) {
@@ -31,6 +30,7 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 			if(($ac_only_unassigned == 1) && (count($context_workers)>0)) {
 				// Do something.
 			} else {
+				$logger->info("[Cerb5Blog.com] Closing Ticket # " . $id);
 				if (DevblocksPlatform::isPluginEnabled('cerberusweb.auditlog')) {
 					// Code that requires time tracker to be enabled.
 					$fields = array(
@@ -75,5 +75,3 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 		$this->setParam('close_days', $ac_close_days);
   }
 };
-
-endif;
