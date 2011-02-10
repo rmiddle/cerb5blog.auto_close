@@ -1,0 +1,34 @@
+<!DOCTYPE plugin SYSTEM "../../libs/devblocks/plugin.dtd">
+<plugin>
+	<id>cerb5blog.auto_close</id>
+	<name>[Cerb5Blog.com] Auto Close by Date</name>
+	<description>Auto close tickets that haven't been touched in X days</description>
+	<author>Robert Middleswarth</author>
+	<revision>7</revision>
+	<link>http://www.cerb5blog.com/project/auto_close</link>
+	<image>plugin.png</image>
+
+	<!-- Plugin Dependencies -->
+	
+	<dependencies>
+		<require plugin_id="cerberusweb.core" version="5.0.0-rc1" />
+	</dependencies>
+
+	<extensions>
+ 
+		<!-- Config Tabs -->
+		<extension point="cerberusweb.config.tab">
+			<id>cerb5blog.auto_close.config.tab</id>
+			<name>[Cerb5Blog.com] Last Action and Audit Log Tab</name>
+			<class>
+				<file>api/App.php</file>
+				<name>Cerb5BlogAutoCloseConfigTab</name>
+			</class>
+			<params>
+				<param key="uri" value="cerb5blog_auto_close" />
+				<param key="title" value="cerb5blog.auto_close.title" />
+			</params>
+		</extension>
+
+	</extensions>
+</plugin>

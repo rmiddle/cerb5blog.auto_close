@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+	<header datatype="winres" segtype="sentence" adminlang="en-us"
+		srclang="en-us" o-tmf="abc" />
+	<body>
+    <!-- Generic Text -->
+    <tu tuid='cerb5blog.auto_close.success'>
+      <tuv xml:lang="en_US"><seg>Saved Successfully</seg></tuv>
+    </tu>
+    <tu tuid='cerb5blog.auto_close.no'>
+      <tuv xml:lang="en_US"><seg>No</seg></tuv>
+    </tu>
+
+    <!-- Title Section -->
+    <tu tuid='cerb5blog.auto_close.title'>
+      <tuv xml:lang="en_US"><seg>Cerb5Blog Auto Close</seg></tuv>
+    </tu>
+    <tu tuid='cerb5blog.auto_close.config.tab.title'>
+      <tuv xml:lang="en_US"><seg>Auto Close Options:</seg></tuv>
+    </tu>
+	
+    <tu tuid='cerb5blog.auto_close.config.tab.close_days'>
+      <tuv xml:lang="en_US"><seg>Number of days of no activity before closing?</seg></tuv>
+    </tu>
+    <tu tuid='cerb5blog.auto_close.config.tab.only_unassigned'>
+      <tuv xml:lang="en_US"><seg>Only close tickets that are unassigned?</seg></tuv>
+    </tu>
+
+    <!-- Error -->
+
+</body>
+</tmx>
+<!--
+
+-->
