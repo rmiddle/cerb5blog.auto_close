@@ -16,17 +16,14 @@
 
 	<extensions>
  
-		<!-- Config Tabs -->
-		<extension point="cerberusweb.config.tab">
-			<id>cerb5blog.auto_close.config.tab</id>
-			<name>[Cerb5Blog.com] Last Action and Audit Log Tab</name>
+		<extension point="cerberusweb.cron">
+			<id>cerb5blog.auto_close.cron</id>
+			<name>[Cerb5Blog.com]  Auto Close Cron Task</name>
 			<class>
-				<file>api/App.php</file>
-				<name>Cerb5BlogAutoCloseConfigTab</name>
+				<file>api/cron_auto_close.php</file>
+				<name>Cerb5BlogAutoCloseCron</name>
 			</class>
 			<params>
-				<param key="uri" value="cerb5blog_auto_close" />
-				<param key="title" value="cerb5blog.auto_close.title" />
 			</params>
 		</extension>
 
