@@ -12,10 +12,13 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 
 		@$ac_only_unassigned = $this->getParam('only_unassigned', 0);
 		@$ac_close_days = $this->getParam('close_days', 7);
+		@$ac_close_days_term = $this->getParam('close_days_term', 'd');
+		$close_time = time();
+		$close_time -= CerberusCronPageExtension::getIntervalAsSeconds($duration, $term);
 		
 		$sql = "SELECT t.id ";
 		$sql .= "FROM ticket t ";
-		$sql .= sprintf("WHERE t.updated_date < %d  ", strtotime("-".$ac_close_days." days"));
+		$sql .= sprintf("WHERE t.updated_date < %d  ", $close_time));
 		$sql .= "AND t.is_waiting = 1 ";
 		$sql .= "GROUP BY t.id ";
 		$sql .= "ORDER BY t.id ";
@@ -47,7 +50,7 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 				$fields[DAO_Ticket::IS_WAITING] = 0;
 				$fields[DAO_Ticket::IS_CLOSED] = 1;
 				$fields[DAO_Ticket::IS_DELETED] = 0;
-				DAO_Ticket::update($id, $fields);
+				//DAO_Ticket::update($id, $fields);
 				unset($fields);
 			}
 		}
@@ -62,8 +65,10 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 
 		@$ac_only_unassigned = $this->getParam('only_unassigned', 0);
 		@$ac_close_days = $this->getParam('close_days', 7);
+		@$ac_close_days_term = $this->getParam('close_days_term', 'd');
 		$tpl->assign('ac_only_unassigned', $ac_only_unassigned);
 		$tpl->assign('ac_close_days', $ac_close_days);
+		$tpl->assign('ac_close_days_term', $ac_close_days_term);
  
 		$tpl->display($tpl_path . 'cron.tpl');
 	}
@@ -71,7 +76,10 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 	function saveConfigurationAction() {
 		@$ac_only_unassigned = DevblocksPlatform::importGPC($_REQUEST['ac_only_unassigned'],'integer',0);
 		@$ac_close_days = DevblocksPlatform::importGPC($_REQUEST['ac_close_days'],'integer',7);
+	    @$ac_close_days_term = DevblocksPlatform::importGPC($_REQUEST['ac_close_days_term'],'string','d');
+		
 		$this->setParam('only_unassigned', $ac_only_unassigned);
 		$this->setParam('close_days', $ac_close_days);
+		$this->setParam('close_days_term', $ac_close_days_term);
   }
 };
