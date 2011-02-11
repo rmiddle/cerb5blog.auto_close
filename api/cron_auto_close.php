@@ -18,7 +18,7 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 		
 		$sql = "SELECT t.id ";
 		$sql .= "FROM ticket t ";
-		$sql .= sprintf("WHERE t.updated_date < %d  ", $close_time));
+		$sql .= sprintf("WHERE t.updated_date < %d  ", $close_time);
 		$sql .= "AND t.is_waiting = 1 ";
 		$sql .= "GROUP BY t.id ";
 		$sql .= "ORDER BY t.id ";
