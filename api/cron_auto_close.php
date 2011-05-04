@@ -14,7 +14,7 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 		@$ac_close_days = $this->getParam('close_days', 7);
 		@$ac_close_days_term = $this->getParam('close_days_term', 'd');
 		$close_time = time();
-		$close_time -= CerberusCronPageExtension::getIntervalAsSeconds($duration, $term);
+		$close_time -= CerberusCronPageExtension::getIntervalAsSeconds($ac_close_days, $ac_close_days_term);
 		
 		$sql = "SELECT t.id ";
 		$sql .= "FROM ticket t ";
