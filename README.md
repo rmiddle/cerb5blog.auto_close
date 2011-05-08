@@ -11,7 +11,10 @@ Installation
 ------------
 * Change directory to **/cerb5/storage/plugins/**
 * `git clone git://github.com/rmiddle/cerb5blog.auto_close.git`
+* `git checkout --track -b 5.3 origin/5.3`
 * In your helpdesk, enable the plugin from **Setup->Features & Plugins**.
+
+Note: Make sure you branch number matches your Cerberus Version Number.
 
 Credits
 -------
