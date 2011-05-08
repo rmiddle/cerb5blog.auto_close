@@ -14,6 +14,8 @@ Installation
 * `git checkout --track -b 5.2 origin/5.2`
 * In your helpdesk, enable the plugin from **Setup->Features & Plugins**.
 
+Note: Make sure you branch number matches your Cerberus Version Number.
+
 Credits
 -------
 This plugin was developed by [Robert Middleswarth](http://www.cerb5blog.com/).
