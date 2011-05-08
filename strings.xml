@@ -18,10 +18,10 @@
       <tuv xml:lang="en_US"><seg>Opening Ticket #</seg></tuv>
     </tu>
     <tu tuid='cerb5blog.auto_close.cron.auto_close'>
-      <tuv xml:lang="en_US"><seg>Closing Ticket #</seg></tuv>
+      <tuv xml:lang="en_US"><seg>Ticket Auto Closed from Waiting for Reply</seg></tuv>
     </tu>
     <tu tuid='cerb5blog.auto_close.cron.auto_open'>
-      <tuv xml:lang="en_US"><seg>Opening Ticket #</seg></tuv>
+      <tuv xml:lang="en_US"><seg>Ticket Auto Opened from Waiting for Reply</seg></tuv>
     </tu>
 
     <tu tuid='cerb5blog.auto_close.title'>
@@ -44,13 +44,13 @@
       <tuv xml:lang="en_US"><seg>Number of days of no activity before closing?</seg></tuv>
     </tu>
     <tu tuid='cerb5blog.auto_close.config.tab.only_unassigned'>
-      <tuv xml:lang="en_US"><seg>Only close tickets that are unassigned?</seg></tuv>
+      <tuv xml:lang="en_US"><seg>Only open/close tickets that are unassigned?</seg></tuv>
     </tu>
    <tu tuid='cerb5blog.auto_close.title'>
       <tuv xml:lang="en_US"><seg>Cerb5Blog Auto Close</seg></tuv>
     </tu>
    <tu tuid='cerb5blog.auto_close.auto_closed'>
-      <tuv xml:lang="en_US"><seg>Automaticly Closed</seg></tuv>
+      <tuv xml:lang="en_US"><seg>Status Automaticly Changed</seg></tuv>
     </tu>
  
     <!-- Error -->
