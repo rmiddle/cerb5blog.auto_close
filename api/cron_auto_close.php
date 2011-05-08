@@ -12,7 +12,7 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 		@ini_set('memory_limit','128M');
 
 		@$ac_only_unassigned = $this->getParam('only_unassigned', 0);
-		@$ac_open_or_close = $this->getParam('open_or_close', 0);
+		@$ac_open_or_close = $this->getParam('open_or_close', 1);
 		@$ac_close_days = $this->getParam('close_days', 7);
 		@$ac_close_days_term = $this->getParam('close_days_term', 'd');
 		$close_time = time();
@@ -77,7 +77,7 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 		$tpl->assign('path', $tpl_path);
 
 		@$ac_only_unassigned = $this->getParam('only_unassigned', 0);
-		@$ac_open_or_close = $this->getParam('open_or_close', 0);
+		@$ac_open_or_close = $this->getParam('open_or_close', 1);
 		@$ac_close_days = $this->getParam('close_days', 7);
 		@$ac_close_days_term = $this->getParam('close_days_term', 'd');
 		$tpl->assign('ac_only_unassigned', $ac_only_unassigned);
@@ -89,7 +89,7 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
  
 	function saveConfigurationAction() {
 		@$ac_only_unassigned = DevblocksPlatform::importGPC($_REQUEST['ac_only_unassigned'],'integer',0);
-		@$ac_open_or_close = DevblocksPlatform::importGPC($_REQUEST['ac_open_or_close'],'integer',0);
+		@$ac_open_or_close = DevblocksPlatform::importGPC($_REQUEST['ac_open_or_close'],'integer',1);
 		@$ac_close_days = DevblocksPlatform::importGPC($_REQUEST['ac_close_days'],'integer',7);
 	    @$ac_close_days_term = DevblocksPlatform::importGPC($_REQUEST['ac_close_days_term'],'string','d');
 		
