@@ -1,6 +1,11 @@
 <H3>{$translate->_('cerb5blog.auto_close.title')}</H3>
 <br>
 
+{$translate->_('cerb5blog.auto_close.config.tab.open_or_close')}<br>
+<label><input type="radio" name="ac_open_or_close" value="1" {if $ac_open_or_close}checked="checked"{/if}> {$translate->_('cerb5blog.auto_close.config.tab.open_or_close.close')|capitalize}</label>
+<label><input type="radio" name="ac_open_or_close" value="0" {if !$ac_open_or_close}checked="checked"{/if}> {$translate->_('cerb5blog.auto_close.config.tab.open_or_close.open')}</label>
+<br>
+
 {$translate->_('cerb5blog.auto_close.config.tab.close_days')}<br>
 <input type="text" name="ac_close_days" maxlength="5" size="3" value="{$ac_close_days}">
 <select name="ac_close_days_term">

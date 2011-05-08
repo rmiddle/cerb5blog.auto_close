@@ -5,12 +5,14 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 
 	function run() {
 		$db = DevblocksPlatform::getDatabaseService();
+        $translate = DevblocksPlatform::getTranslationService();
 		$logger = DevblocksPlatform::getConsoleLog();
 		$logger->info("[Cerb5Blog.com] Running Auto Close Cron Task.");
 
 		@ini_set('memory_limit','128M');
 
 		@$ac_only_unassigned = $this->getParam('only_unassigned', 0);
+		@$ac_open_or_close = $this->getParam('open_or_close', 0);
 		@$ac_close_days = $this->getParam('close_days', 7);
 		@$ac_close_days_term = $this->getParam('close_days_term', 'd');
 		$close_time = time();
@@ -33,7 +35,13 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 			if(($ac_only_unassigned == 1) && (count($context_workers)>0)) {
 				$logger->info("[Cerb5Blog.com] Worker assigned but we are only closing tickets without a worker.");
 			} else {
-				$logger->info("[Cerb5Blog.com] Closing Ticket # " . $id);
+                if($ac_open_or_close) {
+                    $logger->info("[Cerb5Blog.com] " . $translate->_('cerb5blog.auto_close.cron.close') . " " . $id);
+                    $close_message = $translate->_('cerb5blog.auto_close.cron.auto_close');
+                } else {
+                    $logger->info("[Cerb5Blog.com] " . $translate->_('cerb5blog.auto_close.cron.open') . " " . $id);
+                    $close_message = $translate->_('cerb5blog.auto_close.cron.auto_open');
+                }
 				if (class_exists('DAO_TicketAuditLog',true)):
 					// Code that requires time tracker to be enabled.
 					$fields = array(
@@ -41,14 +49,18 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 						DAO_TicketAuditLog::WORKER_ID => 0,
 						DAO_TicketAuditLog::CHANGE_DATE => time(),
 						DAO_TicketAuditLog::CHANGE_FIELD => "cerb5blog.auto_close.auto_closed",
-						DAO_TicketAuditLog::CHANGE_VALUE => "Auto Closed",
+						DAO_TicketAuditLog::CHANGE_VALUE => $close_message,
 					);
 					$log_id = DAO_TicketAuditLog::create($fields);
 					unset($fields);
 				endif;
-		
+
+                if($ac_open_or_close) {
+                    $fields[DAO_Ticket::IS_CLOSED] = 1;
+                } else {
+                    $fields[DAO_Ticket::IS_CLOSED] = 0;
+                }	
 				$fields[DAO_Ticket::IS_WAITING] = 0;
-				$fields[DAO_Ticket::IS_CLOSED] = 1;
 				$fields[DAO_Ticket::IS_DELETED] = 0;
 				DAO_Ticket::update($id, $fields);
 				unset($fields);
@@ -64,6 +76,7 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 		$tpl->assign('path', $tpl_path);
 
 		@$ac_only_unassigned = $this->getParam('only_unassigned', 0);
+		@$ac_open_or_close = $this->getParam('open_or_close', 0);
 		@$ac_close_days = $this->getParam('close_days', 7);
 		@$ac_close_days_term = $this->getParam('close_days_term', 'd');
 		$tpl->assign('ac_only_unassigned', $ac_only_unassigned);
@@ -75,10 +88,12 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
  
 	function saveConfigurationAction() {
 		@$ac_only_unassigned = DevblocksPlatform::importGPC($_REQUEST['ac_only_unassigned'],'integer',0);
+		@$ac_open_or_close = DevblocksPlatform::importGPC($_REQUEST['ac_open_or_close'],'integer',0);
 		@$ac_close_days = DevblocksPlatform::importGPC($_REQUEST['ac_close_days'],'integer',7);
 	    @$ac_close_days_term = DevblocksPlatform::importGPC($_REQUEST['ac_close_days_term'],'string','d');
 		
 		$this->setParam('only_unassigned', $ac_only_unassigned);
+		$this->setParam('open_or_close', $ac_open_or_close);
 		$this->setParam('close_days', $ac_close_days);
 		$this->setParam('close_days_term', $ac_close_days_term);
   }
