@@ -5,7 +5,7 @@ Copyright (C) 2011 Robert Middleswarth
 
 What's this?
 ------------
-Allow you to automaticly close tickets after X days
+Allow you to automatically open or close tickets that are currently in waiting for reply status after a specified period of time.
 
 Installation
 ------------
