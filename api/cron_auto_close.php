@@ -64,7 +64,7 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
                 }	
                 $fields[DAO_Ticket::IS_WAITING] = 0;
                 $fields[DAO_Ticket::IS_DELETED] = 0;
-                //DAO_Ticket::update($id, $fields);
+                DAO_Ticket::update($id, $fields);
                 unset($fields);
 			}
 		}

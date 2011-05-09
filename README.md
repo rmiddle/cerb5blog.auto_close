@@ -1,5 +1,3 @@
-This plug-in is not yet ready under 5.4 Do Not Use.
-
 Cerb5 Plugins - cerb5blog.auto_close
 ===========================================
 Copyright (C) 2011 Robert Middleswarth
