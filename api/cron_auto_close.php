@@ -32,7 +32,7 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 			// Loop though the records.
 			$id = intval($row['id']);
 			
-			$context_workers = CerberusContexts::getWorkers(CerberusContexts::CONTEXT_TICKET, $id);
+            $context_workers = CerberusContexts::getWatchers(CerberusContexts::CONTEXT_TICKET, $id);
 			if(($ac_only_unassigned == 1) && (count($context_workers)>0)) {
 				$logger->info("[Cerb5Blog.com] Worker assigned but we are only closing tickets without a worker.");
 			} else {
@@ -61,10 +61,10 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
                 } else {
                     $fields[DAO_Ticket::IS_CLOSED] = 0;
                 }	
-				$fields[DAO_Ticket::IS_WAITING] = 0;
-				$fields[DAO_Ticket::IS_DELETED] = 0;
-				DAO_Ticket::update($id, $fields);
-				unset($fields);
+                $fields[DAO_Ticket::IS_WAITING] = 0;
+                $fields[DAO_Ticket::IS_DELETED] = 0;
+                //DAO_Ticket::update($id, $fields);
+                unset($fields);
 			}
 		}
 		$logger->info("[Cerb5Blog.com] Finished processing Auto Close Cron Job.");
