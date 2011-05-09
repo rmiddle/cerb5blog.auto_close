@@ -15,7 +15,6 @@
 	</dependencies>
 
 	<extensions>
- 
 		<extension point="cerberusweb.cron">
 			<id>cerb5blog.auto_close.cron</id>
 			<name>[Cerb5Blog.com]  Auto Close Cron Task</name>
@@ -25,7 +24,6 @@
 			</class>
 			<params>
 			</params>
-		</extension>
-
+		</extension>		
 	</extensions>
 </plugin>

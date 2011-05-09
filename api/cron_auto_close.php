@@ -1,9 +1,10 @@
 <?php
 
 class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
-  const EXTENSION_ID = 'cerb5blog.auto_close.cron';
+    const EXTENSION_ID = 'cerb5blog.auto_close.cron';
 
 	function run() {
+		$logger = DevblocksPlatform::getConsoleLog();
 		$db = DevblocksPlatform::getDatabaseService();
         $translate = DevblocksPlatform::getTranslationService();
 		$logger = DevblocksPlatform::getConsoleLog();
@@ -81,6 +82,7 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
 		@$ac_close_days = $this->getParam('close_days', 7);
 		@$ac_close_days_term = $this->getParam('close_days_term', 'd');
 		$tpl->assign('ac_only_unassigned', $ac_only_unassigned);
+		$tpl->assign('ac_open_or_close', $ac_open_or_close);
 		$tpl->assign('ac_close_days', $ac_close_days);
 		$tpl->assign('ac_close_days_term', $ac_close_days_term);
  
