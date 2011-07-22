@@ -1,3 +1,6 @@
+`Warning not yet ready for use`
+===========================================
+
 Cerb5 Plugins - cerb5blog.auto_close
 ===========================================
 Copyright (C) 2011 Robert Middleswarth
@@ -7,11 +10,22 @@ What's this?
 ------------
 Allow you to automatically open or close tickets that are currently in waiting for reply status after a specified period of time.
 
-Installation
+* Not yet Tested
+
+Installation using Git
 ------------
 * Change directory to **/cerb5/storage/plugins/**
 * `git clone git://github.com/rmiddle/cerb5blog.auto_close.git`
-* `git checkout --track -b 5.4 origin/5.4`
+* `cd cerb5blog.auto_close`
+* `git checkout --track -b 5.5 origin/5.5`
+* In your helpdesk, enable the plugin from **Setup->Features & Plugins**.
+
+Installation using zip / tar.gz
+------------
+* Goto `https://github.com/rmiddle/cerb5blog.auto_close`
+* Select the correct branch that matches your version of Cerberus
+* click Download button.
+* Unzip in to **/cerb5/storage/plugins/cerb5blog.auto_close**
 * In your helpdesk, enable the plugin from **Setup->Features & Plugins**.
 
 Note: Make sure you branch number matches your Cerberus Version Number.
