@@ -17,7 +17,7 @@ Installation using Git
 * Change directory to **/cerb5/storage/plugins/**
 * `git clone git://github.com/rmiddle/cerb5blog.auto_close.git`
 * `cd cerb5blog.auto_close`
-* `git checkout --track -b 5.5 origin/5.5`
+* `git checkout --track -b 5.7 origin/5.7`
 * In your helpdesk, enable the plugin from **Setup->Features & Plugins**.
 
 Installation using zip / tar.gz
