@@ -1,5 +1,4 @@
 <?php
-
 class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
     const EXTENSION_ID = 'cerb5blog.auto_close.cron';
 

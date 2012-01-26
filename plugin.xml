@@ -17,7 +17,7 @@
 	<extensions>
 		<extension point="cerberusweb.cron">
 			<id>cerb5blog.auto_close.cron</id>
-			<name>[Cerb5Blog.com]  Auto Close Cron Task</name>
+			<name>[Cerb5Blog.com] Auto Close Cron Task</name>
 			<class>
 				<file>api/cron_auto_close.php</file>
 				<name>Cerb5BlogAutoCloseCron</name>
