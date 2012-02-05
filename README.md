@@ -1,6 +1,3 @@
-`Warning not yet ready for use`
-===========================================
-
 Cerb5 Plugins - cerb5blog.auto_close
 ===========================================
 Copyright (C) 2011 Robert Middleswarth
@@ -10,7 +7,7 @@ What's this?
 ------------
 Allow you to automatically open or close tickets that are currently in waiting for reply status after a specified period of time.
 
-* Not yet Tested
+* Tested agaist 5.7.1
 
 Installation using Git
 ------------
