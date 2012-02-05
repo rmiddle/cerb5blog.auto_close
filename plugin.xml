@@ -4,15 +4,30 @@
 	<name>[Cerb5Blog.com] Auto Close by Date</name>
 	<description>Auto close tickets that haven't been touched in X days</description>
 	<author>Robert Middleswarth</author>
-	<revision>7</revision>
+	<version>1.0.8</version>
 	<link>http://www.cerb5blog.com/project/auto_close</link>
 	<image>plugin.png</image>
 
+	<!-- Requirements -->
+	
+	<requires>
+		<app_version min="5.6" max="5.7.99" />
+	</requires>
+	
 	<!-- Plugin Dependencies -->
 	
 	<dependencies>
-		<require plugin_id="cerberusweb.core" version="5.0.0-rc1" />
+		<require plugin_id="cerberusweb.core" version="5.4.0" />
 	</dependencies>
+
+	<!-- Patches -->
+	
+	<patches>
+		<!--
+		<patch version="5.3.0" revision="1" file="patches/5.3.0.php" />
+		-->
+	</patches>
+	
 
 	<extensions>
 		<extension point="cerberusweb.cron">

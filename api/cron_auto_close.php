@@ -39,23 +39,40 @@ class Cerb5BlogAutoCloseCron extends CerberusCronPageExtension {
                 if($ac_open_or_close) {
                     $logger->info("[Cerb5Blog.com] " . $translate->_('cerb5blog.auto_close.cron.close') . " " . $id);
                     $close_message = $translate->_('cerb5blog.auto_close.cron.auto_close');
+                    $status_to = "Closed";
+                    $activity_point = 'ticket.status.closed';	
                 } else {
                     $logger->info("[Cerb5Blog.com] " . $translate->_('cerb5blog.auto_close.cron.open') . " " . $id);
                     $close_message = $translate->_('cerb5blog.auto_close.cron.auto_open');
+                    $status_to = "Open";
+                    $activity_point = 'ticket.status.open';	
                 }
-				if (class_exists('DAO_TicketAuditLog',true)):
-					// Code that requires time tracker to be enabled.
-					$fields = array(
-						DAO_TicketAuditLog::TICKET_ID => $id,
-						DAO_TicketAuditLog::WORKER_ID => 0,
-						DAO_TicketAuditLog::CHANGE_DATE => time(),
-						DAO_TicketAuditLog::CHANGE_FIELD => "cerb5blog.auto_close.auto_closed",
-						DAO_TicketAuditLog::CHANGE_VALUE => $close_message,
-					);
-					$log_id = DAO_TicketAuditLog::create($fields);
-					unset($fields);
-				endif;
-
+				$entry = array(
+					//{{actor}} changed ticket {{target}} to status {{status}}
+					'message' => 'activities.ticket.status',
+					'variables' => array(
+						'target' => sprintf("[%s] %s", $ticket->mask, $ticket->subject),
+                        'actor' => '(auto)',
+                        'status' => $status_to,
+					),
+					'urls' => array(
+                        'target' => ('c=display&mask=' . $ticket->mask),
+					)
+				);
+                if ($worker->id) {
+                    $worker_id = $worker->id;
+                } else {
+                    $worker_id = 0;
+                }
+                DAO_ContextActivityLog::create(array(
+                    DAO_ContextActivityLog::ACTIVITY_POINT => $activity_point,
+                    DAO_ContextActivityLog::CREATED => time(),
+                    DAO_ContextActivityLog::ACTOR_CONTEXT => '',
+                    DAO_ContextActivityLog::ACTOR_CONTEXT_ID => 0,
+                    DAO_ContextActivityLog::TARGET_CONTEXT => 'cerberusweb.contexts.ticket',
+                    DAO_ContextActivityLog::TARGET_CONTEXT_ID => $ticket_id,
+                    DAO_ContextActivityLog::ENTRY_JSON => json_encode($entry),
+                ));
                 if($ac_open_or_close) {
                     $fields[DAO_Ticket::IS_CLOSED] = 1;
                 } else {
